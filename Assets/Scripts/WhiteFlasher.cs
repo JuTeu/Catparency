@@ -11,7 +11,7 @@ namespace Catparency
         bool _blinkingInProgress;
         float _blinkingTimer = 0f;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        void Awake()
         {
             _originalColors = new Vector4[_renderers.Length];
             _materialPropertyBlock = new();
