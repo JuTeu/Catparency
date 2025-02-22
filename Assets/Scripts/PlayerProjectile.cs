@@ -14,7 +14,7 @@ namespace Catparency
         // Update is called once per frame
         void FixedUpdate()
         {
-            _rigidbody.linearVelocity = IsInUse ? Vector3.up * 20f : Vector3.zero;
+            _rigidbody.linearVelocity = _projectileVisuals[0].enabled ? Vector3.up * 20f : Vector3.zero;
         }
 
         void OnTriggerEnter(Collider other)
@@ -29,7 +29,7 @@ namespace Catparency
             {
                 visual.enabled = false;
             }
-            IsInUse = false;
+            //IsInUse = false;
             _collider.enabled = false;
             _particles.Play();
             yield return new WaitForSeconds(1f);
