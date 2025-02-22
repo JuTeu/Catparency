@@ -17,7 +17,7 @@ namespace Catparency
             _rigidbody.linearVelocity = IsInUse ? Vector3.up * 20f : Vector3.zero;
         }
 
-        void OnCollisionEnter(Collision collision)
+        void OnTriggerEnter(Collider other)
         {
             if (!IsInUse) return;
             StartCoroutine(Hit());
@@ -29,6 +29,7 @@ namespace Catparency
             {
                 visual.enabled = false;
             }
+            IsInUse = false;
             _collider.enabled = false;
             _particles.Play();
             yield return new WaitForSeconds(1f);
