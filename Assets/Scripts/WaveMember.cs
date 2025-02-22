@@ -13,6 +13,7 @@ namespace Catparency
         {
             _dealtWith = false;
             _waveManager = waveManager;
+            _onStart.Invoke();
         }
 
         public void DealtWith()
