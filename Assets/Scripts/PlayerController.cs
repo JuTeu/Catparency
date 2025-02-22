@@ -88,7 +88,6 @@ namespace Catparency
             _animator.SetTrigger("IsHit");
             if (_health > 0)
             {
-                _invulnerability = 2f;
                 Invoke("Freeze", 0.1f);
             }
             else
@@ -100,6 +99,7 @@ namespace Catparency
         void Freeze()
         {
             System.Threading.Thread.Sleep(100);
+            _invulnerability = 2f;
         }
 
         IEnumerator Die()
