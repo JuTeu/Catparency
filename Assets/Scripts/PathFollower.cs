@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
 
@@ -20,6 +21,7 @@ namespace Catparency
             int loopPoint = int.MaxValue;
             for (int i = 0; i < _movements.Length; i++)
             {
+                _movements[i].Event.Invoke();
                 Vector3 targetPosition = _movements[i].IsRelativeMovement ?
                                          _rigidbody.position + _movements[i].MovementVectorOrPosition :
                                          _movements[i].MovementVectorOrPosition;
@@ -79,5 +81,6 @@ namespace Catparency
         public float Duration;
         public EasingMode XEasing, YEasing, ZEasing;
         public Vector3 MovementVectorOrPosition;
+        public UnityEvent Event;
     }
 }
