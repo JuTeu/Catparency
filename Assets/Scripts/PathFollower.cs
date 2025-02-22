@@ -48,6 +48,7 @@ namespace Catparency
 
         float Ease(float start, float end, float progress, EasingMode easingMode)
         {
+            progress = Mathf.Clamp01(progress);
             float adjustedProgress = easingMode switch
             {
                 EasingMode.EaseInSine => Easing.InSine(progress),

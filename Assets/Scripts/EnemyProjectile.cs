@@ -17,6 +17,7 @@ namespace Catparency
 
         public void Shoot(Vector3 position, Quaternion rotation, EnemyProjectileMovement[] movements, float scale, bool IsGhost)
         {
+            //Debug.Log(position);
             _rigidbody.position = position;
             _collider.enabled = true;
             transform.localScale = Vector3.one * scale;
@@ -24,15 +25,16 @@ namespace Catparency
             _movements = movements;
             Pool.AvailableEnemyProjectiles.Remove(this);
             IsInUse = true;
-            foreach (var visual in _projectileVisuals)
-            {
-                visual.enabled = true;
-            }
             StartCoroutine(Move());
         }
 
         IEnumerator Move()
         {
+            yield return null;
+            foreach (var visual in _projectileVisuals)
+            {
+                visual.enabled = true;
+            }
             for (int i = 0; i < _movements.Length; i++)
             {
                 float progress = 0f;

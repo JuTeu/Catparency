@@ -147,7 +147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &72516984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,11 +209,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectiles: []
+  _distanceFromMiddle: 0
   _angle: 0
   _angleRotationSpeed: 0
   _shootDelay: 0
   _roundDelay: 0
   _degreesBetweenProjectiles: 0
+  _spacingBetweenProjectiles: 0
   _projectileCount: 0
   _rounds: 0
 --- !u!114 &72516986
@@ -749,7 +751,7 @@ Transform:
   m_GameObject: {fileID: 240343551}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.51, y: -0.7290952, z: 0}
+  m_LocalPosition: {x: 14, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -771,13 +773,43 @@ MonoBehaviour:
   _flipByY: 0
   _offset: {x: 0, y: 0, z: 0}
   _movements:
-  - LoopPoint: 0
-    IsRelativeMovement: 1
-    Duration: 1
-    XEasing: 0
-    YEasing: 20
+  - LoopPoint: 1
+    IsRelativeMovement: 0
+    Duration: 3
+    XEasing: 11
+    YEasing: 4
     ZEasing: 0
-    MovementVectorOrPosition: {x: -5, y: 2, z: 0}
+    MovementVectorOrPosition: {x: 0, y: 4, z: 0}
+    Event:
+      m_PersistentCalls:
+        m_Calls: []
+  - LoopPoint: 0
+    IsRelativeMovement: 0
+    Duration: 3
+    XEasing: 11
+    YEasing: 4
+    ZEasing: 0
+    MovementVectorOrPosition: {x: 3, y: 3, z: 0}
+    Event:
+      m_PersistentCalls:
+        m_Calls: []
+  - LoopPoint: 0
+    IsRelativeMovement: 0
+    Duration: 3
+    XEasing: 4
+    YEasing: 11
+    ZEasing: 0
+    MovementVectorOrPosition: {x: 0, y: 2, z: 0}
+    Event:
+      m_PersistentCalls:
+        m_Calls: []
+  - LoopPoint: 0
+    IsRelativeMovement: 0
+    Duration: 3
+    XEasing: 4
+    YEasing: 11
+    ZEasing: 0
+    MovementVectorOrPosition: {x: -3, y: 3, z: 0}
     Event:
       m_PersistentCalls:
         m_Calls: []
@@ -835,11 +867,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectiles: []
+  _distanceFromMiddle: 0
   _angle: 0
   _angleRotationSpeed: 0
   _shootDelay: 0
   _roundDelay: 0
   _degreesBetweenProjectiles: 0
+  _spacingBetweenProjectiles: 0
   _projectileCount: 0
   _rounds: 0
 --- !u!114 &240343560
@@ -1801,7 +1835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &817738097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1862,14 +1896,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487fd45ab149f02419585ecb1a99a368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectiles: []
+  _projectiles:
+  - ProjectileMovements:
+    - Duration: 1
+      Speed: 2
+      ProjectilePathType: 0
+      DirectionOrOrbitPoint: {x: 1, y: -1, z: 0}
+    - Duration: 5
+      Speed: 2
+      ProjectilePathType: 0
+      DirectionOrOrbitPoint: {x: 0, y: -1, z: 0}
+    Size: 1
+    IsGhost: 0
+  - ProjectileMovements:
+    - Duration: 5
+      Speed: 2
+      ProjectilePathType: 0
+      DirectionOrOrbitPoint: {x: 0, y: -1, z: 0}
+    - Duration: 0
+      Speed: -2
+      ProjectilePathType: 0
+      DirectionOrOrbitPoint: {x: 0, y: 1, z: 0}
+    Size: 1
+    IsGhost: 0
+  _distanceFromMiddle: 0
   _angle: 0
   _angleRotationSpeed: 0
-  _shootDelay: 0
+  _shootDelay: 0.5
   _roundDelay: 0
   _degreesBetweenProjectiles: 0
-  _projectileCount: 0
-  _rounds: 0
+  _spacingBetweenProjectiles: 1
+  _projectileCount: 10
+  _rounds: 1
 --- !u!114 &817738099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1929,7 +1987,7 @@ MonoBehaviour:
   _movements:
   - LoopPoint: 0
     IsRelativeMovement: 1
-    Duration: 1
+    Duration: 10
     XEasing: 0
     YEasing: 20
     ZEasing: 0
@@ -2089,7 +2147,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
