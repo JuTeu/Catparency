@@ -10,6 +10,7 @@ namespace Catparency
     public class PathFollower : MonoBehaviour
     {
         [SerializeField] bool _flipByX, _flipByY;
+        [SerializeField] float _wakingDelay;
         [SerializeField] Vector3 _offset;
         [SerializeField] Movement[] _movements;
         Rigidbody _rigidbody;
@@ -17,6 +18,7 @@ namespace Catparency
         IEnumerator Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            yield return new WaitForSeconds(_wakingDelay);
 
             int loopPoint = int.MaxValue;
             for (int i = 0; i < _movements.Length; i++)
