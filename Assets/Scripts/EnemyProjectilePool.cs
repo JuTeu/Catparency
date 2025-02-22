@@ -22,10 +22,15 @@ namespace Catparency
             }
         }
 
-        // Update is called once per frame
-        void Update()
+        public static EnemyProjectile GetProjectile()
         {
-        
+            if (_instance.AvailableEnemyProjectiles.Count == 0)
+            {
+                EnemyProjectile newProjectile = Instantiate(_instance._enemyProjectileBase).GetComponent<EnemyProjectile>();
+                newProjectile.Pool = _instance;
+                _instance.AvailableEnemyProjectiles.Add(newProjectile);
+            }
+            return _instance.AvailableEnemyProjectiles[0];
         }
     }
 }

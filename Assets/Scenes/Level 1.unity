@@ -407,7 +407,8 @@ GameObject:
   - component: {fileID: 240343557}
   - component: {fileID: 240343558}
   - component: {fileID: 240343559}
-  m_Layer: 8
+  - component: {fileID: 240343560}
+  m_Layer: 7
   m_Name: Evil Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -429,7 +430,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -528,19 +529,7 @@ MonoBehaviour:
     MovementVectorOrPosition: {x: -5, y: 2, z: 0}
     Event:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 240343558}
-          m_TargetAssemblyTypeName: Catparency.WhiteFlasher, Assembly-CSharp
-          m_MethodName: StartBlinking
-          m_Mode: 4
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 1
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!54 &240343557
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -594,6 +583,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487fd45ab149f02419585ecb1a99a368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectiles: []
+  _angle: 0
+  _angleRotationSpeed: 0
+  _shootDelay: 0
+  _roundDelay: 0
+  _degreesBetweenProjectiles: 0
+  _projectileCount: 0
+  _rounds: 0
+--- !u!114 &240343560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240343551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3923aae63ee5e874b865448604aef147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 10
+  _onOffScreenEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDamagedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 240343558}
+        m_TargetAssemblyTypeName: Catparency.WhiteFlasher, Assembly-CSharp
+        m_MethodName: StartBlinking
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _healthEvents:
+  - Health: 0
+    Event:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 240343551}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &321856232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1204,7 +1249,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 0.1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1414,7 +1459,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pool: {fileID: 0}
-  _renderer: {fileID: 819821520}
   _rigidbody: {fileID: 819821518}
   _particles: {fileID: 1337832241}
   _collider: {fileID: 819821519}
@@ -1722,12 +1766,10 @@ MonoBehaviour:
   _waveTitleAnimator: {fileID: 768706384}
   _waves:
   - Delay: 0
-    Title: 'Nyt on kivaa
-
-      jee'
+    Title: Test Wave
     WaveMembers: []
   - Delay: 3
-    Title: Hurjaa
+    Title: Another Wave
     WaveMembers: []
 --- !u!4 &890975950
 Transform:
