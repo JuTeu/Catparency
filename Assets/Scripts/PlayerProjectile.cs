@@ -1,46 +1,49 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerProjectile : MonoBehaviour
+namespace Catparency
 {
-    public bool IsInUse { get; private set; }
-    [SerializeField] Rigidbody _rigidbody;
-    [SerializeField] ParticleSystem _particles;
-    [SerializeField] Collider _collider;
-    [SerializeField] MeshRenderer[] _projectileVisuals;
-
-    // Update is called once per frame
-    void FixedUpdate()
+    public class PlayerProjectile : MonoBehaviour
     {
-        _rigidbody.linearVelocity = IsInUse ? Vector3.up * 20f : Vector3.zero;
-    }
+        public bool IsInUse { get; private set; }
+        [SerializeField] Rigidbody _rigidbody;
+        [SerializeField] ParticleSystem _particles;
+        [SerializeField] Collider _collider;
+        [SerializeField] MeshRenderer[] _projectileVisuals;
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (!IsInUse) return;
-        StartCoroutine(Hit());
-    }
-
-    IEnumerator Hit()
-    {
-        foreach (var visual in _projectileVisuals)
+        // Update is called once per frame
+        void FixedUpdate()
         {
-            visual.enabled = false;
+            _rigidbody.linearVelocity = IsInUse ? Vector3.up * 20f : Vector3.zero;
         }
-        _collider.enabled = false;
-        _particles.Play();
-        yield return new WaitForSeconds(1f);
-        IsInUse = false;
-    }
 
-    public void Shoot(Vector3 position)
-    {
-        _collider.enabled = true;
-        _rigidbody.position = position;
-        foreach (var visual in _projectileVisuals)
+        void OnCollisionEnter(Collision collision)
         {
-            visual.enabled = true;
+            if (!IsInUse) return;
+            StartCoroutine(Hit());
         }
-        IsInUse = true;
+
+        IEnumerator Hit()
+        {
+            foreach (var visual in _projectileVisuals)
+            {
+                visual.enabled = false;
+            }
+            _collider.enabled = false;
+            _particles.Play();
+            yield return new WaitForSeconds(1f);
+            IsInUse = false;
+        }
+
+        public void Shoot(Vector3 position)
+        {
+            _collider.enabled = true;
+            _rigidbody.position = position;
+            foreach (var visual in _projectileVisuals)
+            {
+                visual.enabled = true;
+            }
+            IsInUse = true;
+        }
     }
 }
