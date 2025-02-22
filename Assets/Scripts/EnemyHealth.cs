@@ -27,7 +27,7 @@ namespace Catparency
             HealthEvent healthEvent = null;
             for (int i = 0; i < _healthEvents.Length; i++)
             {
-                if (_healthEvents[i].Health <= _health && _healthEvents[i].Health < healthEvent.Health)
+                if (_healthEvents[i].Health >= _health && (healthEvent == null || _healthEvents[i].Health < healthEvent.Health))
                 {
                     healthEvent = _healthEvents[i];
                 }

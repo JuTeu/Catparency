@@ -9,21 +9,25 @@ namespace Catparency
     public class EnemyProjectile : MonoBehaviour
     {
         public EnemyProjectilePool Pool;
-        [SerializeField] Renderer _renderer;
         EnemyProjectileMovement[] _movements;
         [SerializeField] Rigidbody _rigidbody;
         [SerializeField] ParticleSystem _particles;
         [SerializeField] Collider _collider;
         [SerializeField] MeshRenderer[] _projectileVisuals;
 
-        public void Shoot(Quaternion rotation, EnemyProjectileMovement[] movements, float scale = 1f)
+        public void Shoot(Vector3 position, Quaternion rotation, EnemyProjectileMovement[] movements, float scale, bool IsGhost)
         {
+            _rigidbody.position = position;
             _collider.enabled = true;
             transform.localScale = Vector3.one * scale;
             _rigidbody.rotation = rotation;
             _movements = movements;
             Pool.AvailableEnemyProjectiles.Remove(this);
             IsInUse = true;
+            foreach (var visual in _projectileVisuals)
+            {
+                visual.enabled = true;
+            }
             StartCoroutine(Move());
         }
 
@@ -34,12 +38,12 @@ namespace Catparency
                 float progress = 0f;
                 while (progress < 1f)
                 {
-                    if (!_renderer.isVisible)
+                    if (_rigidbody.position.sqrMagnitude > 1000)
                     {
                         NoLongerInUse();
                         yield break;
                     }
-                    progress += Time.fixedDeltaTime * Mathf.Max(0.01f, _movements[i].Duration);
+                    progress += Time.fixedDeltaTime / Mathf.Max(0.01f, _movements[i].Duration);
                     Vector3 direction = Vector3.zero;
                     switch (_movements[i].ProjectilePathType)
                     {
@@ -56,7 +60,7 @@ namespace Catparency
 
         bool IsInUse;
 
-        void OnCollisionEnter(Collision collision)
+        void OnTriggerEnter(Collider other)
         {
             if (!IsInUse) return;
             StopAllCoroutines();
@@ -65,18 +69,24 @@ namespace Catparency
 
         IEnumerator Hit()
         {
+            _particles.Play();
             foreach (var visual in _projectileVisuals)
             {
                 visual.enabled = false;
             }
             _collider.enabled = false;
-            _particles.Play();
             yield return new WaitForSeconds(1f);
-            IsInUse = false;
+            NoLongerInUse();
         }
 
         void NoLongerInUse()
         {
+            foreach (var visual in _projectileVisuals)
+            {
+                visual.enabled = false;
+            }
+            IsInUse = false;
+            _collider.enabled = false;
             Pool.AvailableEnemyProjectiles.Add(this);
         }
     }
