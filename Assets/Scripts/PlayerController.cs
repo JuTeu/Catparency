@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Catparency
 {
@@ -37,11 +39,17 @@ namespace Catparency
             _rigidbody = GetComponent<Rigidbody>();
             _inputs = new();
             _inputs.Player.Enable();
+            _inputs.Player.Jump.started += Shift;
             _playerProjectiles = new PlayerProjectile[100];
             for (int i = 0; i < 100; i++)
             {
                 _playerProjectiles[i] = Instantiate(_bullet).GetComponent<PlayerProjectile>();
             }
+        }
+
+        private void Shift(InputAction.CallbackContext context)
+        {
+            Debug.Log("Wow");
         }
 
         void OnDisable()
@@ -54,7 +62,10 @@ namespace Catparency
         {
             if (!_canBeControlled) return;
             _shootCooldown -= Time.fixedDeltaTime;
-            _rigidbody.Move(_rigidbody.position + 5f * Time.fixedDeltaTime * (Vector3)_inputs.Player.Move.ReadValue<Vector2>(), Quaternion.identity);
+            Vector2 moveInput = _inputs.Player.Move.ReadValue<Vector2>();
+            //_rigidbody.rotation = Quaternion.Euler(moveInput.y * 30f, moveInput.x * 30f, 0);
+
+            _rigidbody.Move(_rigidbody.position + 5f * Time.fixedDeltaTime * (Vector3)moveInput, Quaternion.Euler(moveInput.y * 30f, moveInput.x * -30f, 0));
             _rigidbody.position = new Vector3(Mathf.Clamp(_rigidbody.position.x, -10f, 10f), 
                                             Mathf.Clamp(_rigidbody.position.y, -5f, 5f));
 
