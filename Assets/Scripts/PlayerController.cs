@@ -91,7 +91,7 @@ namespace Catparency
             _animator.SetTrigger("IsHit");
             if (_health > 0)
             {
-                Invoke("Freeze", 0.1f);
+                // Invoke("Freeze", 0.1f);
             }
             else
             {
@@ -123,6 +123,7 @@ namespace Catparency
                 {
                     objects.SetActive(true);
                 }
+                _gameOverCat.SetActive(false);
                 _invulnerability = 3f;
                 transform.position = Vector3.down * 2f;
                 _health = 3;
