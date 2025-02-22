@@ -5,6 +5,7 @@ namespace Catparency
 {
     public class PlayerController : MonoBehaviour
     {
+        public static Transform PlayerTransform;
         [SerializeField] GameObject _bullet;
         [SerializeField] Renderer[] _playerMeshes;
         [SerializeField] Animator _animator;
@@ -29,6 +30,7 @@ namespace Catparency
                 StartCoroutine(LoadMainMenu());
             }
             #endif
+            PlayerTransform = transform;
             _rigidbody = GetComponent<Rigidbody>();
             _inputs = new();
             _inputs.Player.Enable();
