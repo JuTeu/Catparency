@@ -6,7 +6,8 @@ namespace Catparency
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] GameObject _bullet;
-        [SerializeField] MeshRenderer[] _playerMeshes;
+        [SerializeField] Renderer[] _playerMeshes;
+        [SerializeField] Animator _animator;
         PlayerProjectile[] _playerProjectiles;
         Rigidbody _rigidbody;
         InputSystem_Actions _inputs;
@@ -82,15 +83,21 @@ namespace Catparency
         {
             if (_invulnerability > 0f) return;
             _health--;
+            _animator.SetTrigger("IsHit");
             if (_health > 0)
             {
                 _invulnerability = 2f;
-                System.Threading.Thread.Sleep(100);
+                Invoke("Freeze", 0.1f);
             }
             else
             {
                 StartCoroutine(Die());
             }
+        }
+
+        void Freeze()
+        {
+            System.Threading.Thread.Sleep(100);
         }
 
         IEnumerator Die()
