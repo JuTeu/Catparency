@@ -9,6 +9,8 @@ namespace Catparency
         [SerializeField] GameObject _bullet;
         [SerializeField] Renderer[] _playerMeshes;
         [SerializeField] Animator _animator;
+        [SerializeField] GameObject _gameOverCat;
+        [SerializeField] GameObject[] _objectsToDisable;
         PlayerProjectile[] _playerProjectiles;
         Rigidbody _rigidbody;
         InputSystem_Actions _inputs;
@@ -18,6 +20,7 @@ namespace Catparency
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            _gameOverCat.SetActive(false);
             #if UNITY_EDITOR
             IEnumerator LoadMainMenu()
             {
@@ -106,10 +109,20 @@ namespace Catparency
         {
             _canBeControlled = false;
             Debug.Log("autsis");
+            foreach (var objects in _objectsToDisable)
+            {
+                objects.SetActive(false);
+            }
+            _gameOverCat.transform.position = new Vector3(transform.position.x, transform.position.y, _gameOverCat.transform.position.z);
+            _gameOverCat.SetActive(true);
             yield return new WaitForSeconds(4f);
             _continues--;
             if (_continues >= 0)
             {
+                foreach (var objects in _objectsToDisable)
+                {
+                    objects.SetActive(true);
+                }
                 _invulnerability = 3f;
                 transform.position = Vector3.down * 2f;
                 _health = 3;

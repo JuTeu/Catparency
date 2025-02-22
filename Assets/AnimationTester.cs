@@ -8,7 +8,7 @@ namespace Catparency
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.K)) animator.SetTrigger("IsHit");
+            if (Input.GetKeyDown(KeyCode.K)) animator.SetTrigger("IsDefeat");
         }
     }
 }
