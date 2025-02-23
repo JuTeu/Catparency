@@ -9,7 +9,7 @@ Shader "Custom/PlanarShift"
         Tags
         {
             "RenderType"="Transparent"
-            "Queue"="Transparent"
+            "Queue"="Transparent-1"
             "RenderPipeline" = "UniversalPipeline"
         }
 

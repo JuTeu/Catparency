@@ -9,7 +9,7 @@ Shader "Custom/Planar"
         Tags
         {
             "RenderType"="Transparent"
-            "Queue"="Transparent"
+            "Queue"="Transparent-2"
             "RenderPipeline" = "UniversalPipeline"
         }
 
