@@ -63,6 +63,8 @@ namespace Catparency
             }
         }
 
+        public static void ReturnToMainMenu() => _instance.ChangeLevel("Main Menu");
+
         public void ChangeLevel(string levelName)
         {
             if (_levelChangeInProgress) return;

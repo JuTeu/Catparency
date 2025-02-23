@@ -13013,6 +13013,13 @@ MonoBehaviour:
     Title: Evil Appears
     WaveMembers:
     - {fileID: 161007434}
+  - Delay: 0
+    Title: You Won!
+    WaveMembers: []
+  - Delay: 1
+    Title: 
+    WaveMembers:
+    - {fileID: 1644881886}
 --- !u!4 &890975950
 Transform:
   m_ObjectHideFlags: 0
@@ -39598,6 +39605,78 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896679621}
   m_Mesh: {fileID: -5898426513481468883, guid: 832ff126baa16154ebdeb12563b907e0, type: 3}
+--- !u!1 &1644881884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644881887}
+  - component: {fileID: 1644881886}
+  - component: {fileID: 1644881885}
+  m_Layer: 0
+  m_Name: StatsScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1644881885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644881884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59952d92165127b3916cc13e3b55807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1644881886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644881884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58273037802a68549b029d80389a2202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1644881885}
+        m_TargetAssemblyTypeName: Catparency.StatsScreen, Assembly-CSharp
+        m_MethodName: OpenStatsScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &1644881887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644881884}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 19.167013, y: 9.833687, z: -0.43443343}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1651466375
 GameObject:
   m_ObjectHideFlags: 0
@@ -49077,11 +49156,12 @@ SceneRoots:
   - {fileID: 999685853}
   - {fileID: 1558292143}
   - {fileID: 1409375355}
+  - {fileID: 61834982}
+  - {fileID: 565120738}
+  - {fileID: 1644881887}
   - {fileID: 890975950}
   - {fileID: 1812588373}
   - {fileID: 1470080572}
   - {fileID: 1158613958}
   - {fileID: 1302431408}
-  - {fileID: 61834982}
-  - {fileID: 565120738}
   - {fileID: 444201226}
