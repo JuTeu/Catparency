@@ -66,6 +66,11 @@ namespace Catparency
                         case ProjectilePathType.FollowPlayer: direction = _movements[i].Speed * Time.fixedDeltaTime * (PlayerController.PlayerTransform.position - _rigidbody.position).normalized; break;
                         case ProjectilePathType.OrbitPoint: direction = _movements[i].Speed * Time.fixedDeltaTime * Vector2.Perpendicular((_movements[i].DirectionOrOrbitPoint - _rigidbody.position).normalized); break;
                     } //_rigidbody.rotation * _movements[i].DirectionOrOrbitPoint * _movements[i].Speed * Time.fixedDeltaTime;
+                    if (_movements[i].ProjectilePathType != ProjectilePathType.GoStraight)
+                    {
+                        float newAngle = Vector2.Angle(Vector2.right, direction.normalized);
+                        _rigidbody.rotation = Quaternion.Euler(0, 0, newAngle);
+                    }
                     _rigidbody.MovePosition(_rigidbody.position + direction);
                     yield return new WaitForFixedUpdate();
                 }
