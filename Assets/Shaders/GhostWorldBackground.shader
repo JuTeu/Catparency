@@ -67,7 +67,7 @@ Shader "Custom/GhostBackground"
 
             float4 frag (Varyings i) : SV_Target
             {
-                return tex2D(_MainTex, i.uv);
+                return tex2D(_MainTex, i.uv) * _Color;
             }
             ENDHLSL
         }
