@@ -54,7 +54,6 @@ namespace Catparency
                 {
                     accumulatedAngle += Time.time - lastCheckedTime;
                     lastCheckedTime = Time.time;
-                    yield return new WaitForSeconds(_roundDelay);
                     /*for (int j = 0; j < _projectileCount; j++)
                     {
                         yield return new WaitForSeconds(_shootDelay);
@@ -65,7 +64,6 @@ namespace Catparency
                     if (_projectiles.Length == 0) throw new Exception($"Add some projectiles to {gameObject}");
                     for (int j = 0; j < _projectileCount; j++)
                     {
-                        yield return new WaitForSeconds(_shootDelay);
                         rotation = Quaternion.Euler(0, 0, angle);
                         ProjectileParameters parameters = _projectiles[j % _projectiles.Length];
                         //Vector3 offset = Vector3.zero;
@@ -82,7 +80,9 @@ namespace Catparency
                         //Gizmos.DrawRay(transform.position + offset, direction);
                         EnemyProjectilePool.GetProjectile().Shoot(transform.position + offset, rotation, parameters.ProjectileMovements, parameters.Size, parameters.IsGhost);
                         angle += _degreesBetweenProjectiles;
+                        yield return new WaitForSeconds(_shootDelay);
                     }
+                    yield return new WaitForSeconds(_roundDelay);
                 }
                 
             }
