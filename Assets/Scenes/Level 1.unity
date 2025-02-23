@@ -1314,7 +1314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3021344962227052536, guid: e228afc9b35aeb14999ff031208c5366, type: 3}
       propertyPath: _movements.Array.data[0].LoopPoint
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3021344962227052536, guid: e228afc9b35aeb14999ff031208c5366, type: 3}
       propertyPath: _movements.Array.data[0].IsRelativeMovement
@@ -1322,7 +1322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3021344962227052536, guid: e228afc9b35aeb14999ff031208c5366, type: 3}
       propertyPath: _movements.Array.data[0].MovementVectorOrPosition.y
-      value: 20
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 3021344962227052536, guid: e228afc9b35aeb14999ff031208c5366, type: 3}
       propertyPath: _movements.Array.data[0].Event.m_PersistentCalls.m_Calls.Array.size
@@ -1338,7 +1338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4902776232301718492, guid: e228afc9b35aeb14999ff031208c5366, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4902776232301718492, guid: e228afc9b35aeb14999ff031208c5366, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1381,12 +1381,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6915272511953747994, guid: 5c7900884a0a18f4db5dac181764a3e5, type: 3}
     - target: {fileID: 7990665787865866051, guid: e228afc9b35aeb14999ff031208c5366, type: 3}
+      propertyPath: _maxHealth
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990665787865866051, guid: e228afc9b35aeb14999ff031208c5366, type: 3}
       propertyPath: _healthEvents.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7990665787865866051, guid: e228afc9b35aeb14999ff031208c5366, type: 3}
       propertyPath: _healthEvents.Array.data[1].Health
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7990665787865866051, guid: e228afc9b35aeb14999ff031208c5366, type: 3}
       propertyPath: _healthEvents.Array.data[0].Event.m_PersistentCalls.m_Calls.Array.size
@@ -3673,7 +3677,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0, b: 0, a: 1}
+        key0: {r: 1, g: 1, b: 1, a: 1}
         key1: {r: 1, g: 0.9943958, b: 0.20188677, a: 1}
         key2: {r: 1, g: 1, b: 1, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
