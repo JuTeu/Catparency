@@ -13,7 +13,7 @@ Shader "Custom/NormalBackground"
         Tags
         {
             "RenderType"="Transparent"
-            "Queue"="Transparent+1"
+            "Queue"="Transparent"
             "RenderPipeline" = "UniversalPipeline"
         }
 
