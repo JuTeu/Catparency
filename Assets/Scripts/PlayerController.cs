@@ -16,6 +16,7 @@ namespace Catparency
         [SerializeField] GameObject[] _objectsToDisable;
         [SerializeField] TextMeshProUGUI _continuesText, _healthText;
         [SerializeField] Renderer _planarShiftToGhost, _planarShiftToNormal;
+        [SerializeField] AudioSource _sting;
         PlayerProjectile[] _playerProjectiles;
         Rigidbody _rigidbody;
         InputSystem_Actions _inputs;
@@ -129,6 +130,7 @@ namespace Catparency
             if (_invulnerability > 0f || !_canBeControlled) return;
             _health--;
             _healthText.text = $"HP: {_health}";
+            _sting.Play();
             _animator.SetTrigger("IsHit");
             if (_health > 0)
             {
