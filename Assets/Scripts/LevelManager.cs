@@ -9,7 +9,7 @@ namespace Catparency
     {
         [SerializeField] GameObject[] _essentials;
         [SerializeField] Image _fader;
-        [SerializeField] GameObject _mainMenu, _gameOverMenu;
+        [SerializeField] GameObject _mainMenu, _gameOverMenu, _pauseMenu;
         static LevelManager _instance;
         public static bool AlreadyLoaded { get; private set; }
         bool _levelChangeInProgress = false;
@@ -49,6 +49,20 @@ namespace Catparency
             _instance._gameOverMenu.SetActive(true);
         }
 
+        public static void Pause()
+        {
+            if (Time.timeScale < 0.1f)
+            {
+                _instance._pauseMenu.SetActive(false);
+                Time.timeScale = 1f;
+            }
+            else
+            {
+                _instance._pauseMenu.SetActive(true);
+                Time.timeScale = 0f;
+            }
+        }
+
         public void ChangeLevel(string levelName)
         {
             if (_levelChangeInProgress) return;
@@ -68,6 +82,7 @@ namespace Catparency
                 _currentLevelName = levelName;
                 _mainMenu.SetActive(levelName == "Main Menu");
                 _gameOverMenu.SetActive(false);
+                _pauseMenu.SetActive(false);
                 progress = 0f;
                 while (progress < 1f)
                 {

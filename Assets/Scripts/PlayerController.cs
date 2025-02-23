@@ -44,11 +44,19 @@ namespace Catparency
             _inputs = new();
             _inputs.Player.Enable();
             _inputs.Player.Jump.started += Shift;
+            _inputs.Player.Pause.started += Pause;
             _playerProjectiles = new PlayerProjectile[100];
             for (int i = 0; i < 100; i++)
             {
                 _playerProjectiles[i] = Instantiate(_bullet).GetComponent<PlayerProjectile>();
             }
+        }
+
+        void OnDisable()
+        {
+            _inputs.Player.Jump.started -= Shift;
+            _inputs.Player.Pause.started -= Pause;
+            _inputs.Player.Disable();
         }
 
         bool _shiftInProgress, _playerIsGhost;
@@ -82,9 +90,9 @@ namespace Catparency
             _shiftInProgress = false;
         }
 
-        void OnDisable()
+        void Pause(InputAction.CallbackContext context)
         {
-            _inputs.Player.Disable();
+            LevelManager.Pause();
         }
 
         // Update is called once per frame
