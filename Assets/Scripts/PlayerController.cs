@@ -14,7 +14,7 @@ namespace Catparency
         [SerializeField] Animator _animator;
         [SerializeField] GameObject _gameOverCat;
         [SerializeField] GameObject[] _objectsToDisable;
-        [SerializeField] TextMeshProUGUI _continuesText;
+        [SerializeField] TextMeshProUGUI _continuesText, _healthText;
         [SerializeField] Renderer _planarShiftToGhost, _planarShiftToNormal;
         PlayerProjectile[] _playerProjectiles;
         Rigidbody _rigidbody;
@@ -128,6 +128,7 @@ namespace Catparency
         {
             if (_invulnerability > 0f || !_canBeControlled) return;
             _health--;
+            _healthText.text = $"HP: {_health}";
             _animator.SetTrigger("IsHit");
             if (_health > 0)
             {
@@ -177,6 +178,7 @@ namespace Catparency
                 _invulnerability = 3f;
                 transform.position = Vector3.down * 2f;
                 _health = 3;
+                _healthText.text = $"HP: {_health}";
                 _canBeControlled = true;
             }
             else
