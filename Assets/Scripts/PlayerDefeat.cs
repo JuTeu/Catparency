@@ -12,7 +12,7 @@ namespace Catparency
         [SerializeField] TextMeshProUGUI _continuesText;
         [SerializeField] Image _continuesGradient;
         Vector3 _animationPos;
-        public bool _isGameOver = false;
+        public bool IsGameOver = false;
         bool _collided = false;
         void Awake()
         {
@@ -21,7 +21,7 @@ namespace Catparency
 
         void Update()
         {
-            transform.position = Vector3.MoveTowards(transform.position, _collided && !_isGameOver ? _animationPos + Vector3.down * 8f : _animationPos, Time.deltaTime * 12f);
+            transform.position = Vector3.MoveTowards(transform.position, _collided && !IsGameOver ? _animationPos + Vector3.down * 8f : _animationPos, Time.deltaTime * 12f);
         }
 
         void OnEnable()
@@ -37,7 +37,7 @@ namespace Catparency
             yield return new WaitForSeconds(1.8f);
             _faceText.text = "-.-\"";
             float progress = 0f;
-            if (!_isGameOver)
+            if (!IsGameOver)
                 while (progress < 1f)
                 {
                     yield return null;
@@ -54,7 +54,7 @@ namespace Catparency
                 yield return new WaitForSeconds(1f);
             _collided = true;
             progress = 0f;
-            if (!_isGameOver)
+            if (!IsGameOver)
             while (progress < 1f)
             {
                 yield return null;

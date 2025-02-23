@@ -134,14 +134,14 @@ namespace Catparency
 
             if (_continues < 0)
             {
-                _gameOverCat.GetComponent<PlayerDefeat>()._isGameOver = true;
+                _gameOverCat.GetComponent<PlayerDefeat>().IsGameOver = true;
             }
             _gameOverCat.transform.position = new Vector3(transform.position.x, transform.position.y, _gameOverCat.transform.position.z);
             _gameOverCat.SetActive(true);
-            yield return new WaitForSeconds(4f);
             
             if (_continues >= 0)
             {
+                yield return new WaitForSeconds(4f);
                 foreach (var objects in _objectsToDisable)
                 {
                     objects.SetActive(true);
@@ -154,6 +154,7 @@ namespace Catparency
             }
             else
             {
+                yield return new WaitForSeconds(2f);
                 // Game over
                 LevelManager.GameOver();
             }
