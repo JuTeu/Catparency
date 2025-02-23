@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,7 @@ namespace Catparency
         [SerializeField] Animator _animator;
         [SerializeField] GameObject _gameOverCat;
         [SerializeField] GameObject[] _objectsToDisable;
+        [SerializeField] TextMeshProUGUI _continuesText;
         PlayerProjectile[] _playerProjectiles;
         Rigidbody _rigidbody;
         InputSystem_Actions _inputs;
@@ -97,11 +99,12 @@ namespace Catparency
 
         void OnTriggerEnter(Collider collider)
         {
-            if (_invulnerability > 0f) return;
+            if (_invulnerability > 0f || !_canBeControlled) return;
             _health--;
             _animator.SetTrigger("IsHit");
             if (_health > 0)
             {
+                _invulnerability = 2f;
                 // Invoke("Freeze", 0.1f);
             }
             else
@@ -124,10 +127,19 @@ namespace Catparency
             {
                 objects.SetActive(false);
             }
+            
+            _continues--;
+            _continuesText.text = $"Lives left:\n{_continues}";
+            _continuesText.ForceMeshUpdate();
+
+            if (_continues < 0)
+            {
+                _gameOverCat.GetComponent<PlayerDefeat>()._isGameOver = true;
+            }
             _gameOverCat.transform.position = new Vector3(transform.position.x, transform.position.y, _gameOverCat.transform.position.z);
             _gameOverCat.SetActive(true);
             yield return new WaitForSeconds(4f);
-            _continues--;
+            
             if (_continues >= 0)
             {
                 foreach (var objects in _objectsToDisable)
