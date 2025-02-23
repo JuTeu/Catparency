@@ -31,6 +31,14 @@ namespace Catparency
                 targetPosition = new Vector3(_flipByX ? -targetPosition.x : targetPosition.x,
                                              _flipByY ? -targetPosition.y : targetPosition.y,
                                              targetPosition.z);
+                if (_movements[i].IsRelativeMovement && _flipByX)
+                {
+                    targetPosition += Vector3.right * _rigidbody.position.x * 2;
+                }
+                if (_movements[i].IsRelativeMovement && _flipByY)
+                {
+                    targetPosition += Vector3.up * _rigidbody.position.y * 2;
+                }
                 Vector3 startPosition = _rigidbody.position;
                 float progress = 0;
                 while (progress < 1f)
