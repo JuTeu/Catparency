@@ -15,6 +15,7 @@ namespace Catparency
         [SerializeField] GameObject _gameOverCat;
         [SerializeField] GameObject[] _objectsToDisable;
         [SerializeField] TextMeshProUGUI _continuesText;
+        [SerializeField] Renderer _planarShiftToGhost, _planarShiftToNormal;
         PlayerProjectile[] _playerProjectiles;
         Rigidbody _rigidbody;
         InputSystem_Actions _inputs;
@@ -49,9 +50,35 @@ namespace Catparency
             }
         }
 
-        private void Shift(InputAction.CallbackContext context)
+        bool _shiftInProgress, _playerIsGhost;
+        void Shift(InputAction.CallbackContext context)
         {
-            Debug.Log("Wow");
+            if (_shiftInProgress) return;
+            _shiftInProgress = true;
+            _playerIsGhost = !_playerIsGhost;
+            _planarShiftToGhost.gameObject.SetActive(false);
+            _planarShiftToNormal.gameObject.SetActive(false);
+            gameObject.layer = _playerIsGhost ? 11 : 10;
+            StartCoroutine(IEShift());
+        }
+
+        IEnumerator IEShift()
+        {
+            float progress = 0;
+            Renderer plane = _playerIsGhost ? _planarShiftToGhost : _planarShiftToNormal;
+            plane.gameObject.SetActive(true);
+            MaterialPropertyBlock mpb = new();
+            plane.GetPropertyBlock(mpb);
+            while (progress < 1f)
+            {
+                yield return null;
+                progress += Time.deltaTime * 3f;
+                float value = 1f - Mathf.Min(progress, 1f);
+                value *= value;
+                mpb.SetFloat("_Progress", value);
+                plane.SetPropertyBlock(mpb);
+            }
+            _shiftInProgress = false;
         }
 
         void OnDisable()

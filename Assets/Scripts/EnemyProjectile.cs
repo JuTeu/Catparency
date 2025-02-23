@@ -14,10 +14,23 @@ namespace Catparency
         [SerializeField] ParticleSystem _particles;
         [SerializeField] Collider _collider;
         [SerializeField] MeshRenderer[] _projectileVisuals;
+        [SerializeField] Material _bulletNormal, _bulletNormalTransparent, _bulletGhost, _bulletGhostTransparent;
 
         public void Shoot(Vector3 position, Quaternion rotation, EnemyProjectileMovement[] movements, float scale, bool IsGhost)
         {
             //Debug.Log(position);
+            if (IsGhost)
+            {
+                gameObject.layer = 9;
+                _projectileVisuals[0].material = _bulletGhost;
+                _projectileVisuals[1].material = _bulletGhostTransparent;
+            }
+            else
+            {
+                gameObject.layer = 8;
+                _projectileVisuals[0].material = _bulletNormal;
+                _projectileVisuals[1].material = _bulletNormalTransparent;
+            }
             _rigidbody.position = position;
             _collider.enabled = true;
             transform.localScale = Vector3.one * scale;
