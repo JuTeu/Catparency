@@ -90,7 +90,7 @@ Shader "Custom/GhostWorldBackground"
         Stencil
         {
             Ref 5
-            Comp Equal
+            Comp NotEqual
             //Pass Replace
         }
         

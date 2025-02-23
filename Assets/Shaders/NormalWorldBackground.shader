@@ -90,10 +90,10 @@ Shader "Custom/NormalWorldBackground"
         Stencil
         {
             Ref 5
-            Comp NotEqual
+            Comp Equal
             //Pass Replace
         }
-        
+
         LOD 300
 
         // ------------------------------------------------------------------

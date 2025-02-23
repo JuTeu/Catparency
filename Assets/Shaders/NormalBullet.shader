@@ -20,7 +20,7 @@ Shader "Custom/NormalBullet"
         Stencil
         {
             Ref 5
-            Comp NotEqual
+            Comp Equal
             //Pass Replace
         }
 

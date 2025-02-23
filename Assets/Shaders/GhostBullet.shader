@@ -20,7 +20,7 @@ Shader "Custom/GhostBullet"
         Stencil
         {
             Ref 5
-            Comp Equal
+            Comp NotEqual
             //Pass Replace
         }
 
