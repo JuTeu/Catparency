@@ -68,7 +68,7 @@ namespace Catparency
                     } //_rigidbody.rotation * _movements[i].DirectionOrOrbitPoint * _movements[i].Speed * Time.fixedDeltaTime;
                     if (_movements[i].ProjectilePathType != ProjectilePathType.GoStraight)
                     {
-                        float newAngle = Vector2.Angle(Vector2.right, direction.normalized);
+                        float newAngle = Vector2.SignedAngle(Vector2.right, direction.normalized);
                         _rigidbody.rotation = Quaternion.Euler(0, 0, newAngle);
                     }
                     _rigidbody.MovePosition(_rigidbody.position + direction);
