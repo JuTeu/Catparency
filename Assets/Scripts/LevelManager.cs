@@ -75,7 +75,7 @@ namespace Catparency
                 float progress = 0f;
                 while (progress < 1f)
                 {
-                    progress += Time.deltaTime * 3f;
+                    progress += Time.unscaledDeltaTime * 3f;
                     _fader.color = new Color(0, 0, 0, progress);
                     yield return null;
                 }
@@ -86,10 +86,11 @@ namespace Catparency
                 _gameOverMenu.SetActive(false);
                 _pauseMenu.SetActive(false);
                 yield return null;
+                Time.timeScale = 1f;
                 progress = 0f;
                 while (progress < 1f)
                 {
-                    progress += Time.deltaTime * 3f;
+                    progress += Time.unscaledDeltaTime * 3f;
                     _fader.color = new Color(0, 0, 0, 1f - progress);
                     yield return null;
                 }
