@@ -85,6 +85,7 @@ namespace Catparency
                 _mainMenu.SetActive(levelName == "Main Menu");
                 _gameOverMenu.SetActive(false);
                 _pauseMenu.SetActive(false);
+                yield return null;
                 progress = 0f;
                 while (progress < 1f)
                 {
