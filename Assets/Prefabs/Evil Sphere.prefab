@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7990665787865866051}
   - component: {fileID: 9223018265536561265}
   - component: {fileID: 8678611409525694930}
+  - component: {fileID: -1239021391883336874}
   m_Layer: 7
   m_Name: Evil Sphere
   m_TagString: Untagged
@@ -130,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flipByX: 0
   _flipByY: 0
+  _wakingDelay: 0
   _offset: {x: 0, y: 0, z: 0}
   _movements:
   - LoopPoint: 1
@@ -271,6 +273,18 @@ MonoBehaviour:
     Event:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: -1239021391883336874}
+          m_TargetAssemblyTypeName: Catparency.ScoreGiver, Assembly-CSharp
+          m_MethodName: GiveScore
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 100
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 2118068796079365066}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
@@ -344,3 +358,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &-1239021391883336874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118068796079365066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8038f5ec21ac1024db6f52c23fc37795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
