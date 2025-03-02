@@ -15,7 +15,7 @@ namespace Catparency
         [SerializeField] GameObject _gameOverCat;
         [SerializeField] GameObject[] _objectsToDisable;
         [SerializeField] TextMeshProUGUI _continuesText, _healthText;
-        [SerializeField] Renderer _planarShiftToGhost, _planarShiftToNormal;
+        [SerializeField] Renderer _planarShiftToGhost, _planarShiftToNormal, _hitboxVisual;
         [SerializeField] AudioSource _sting;
         PlayerProjectile[] _playerProjectiles;
         Rigidbody _rigidbody;
@@ -45,8 +45,8 @@ namespace Catparency
             _inputs.Player.Enable();
             _inputs.Player.Jump.started += Shift;
             _inputs.Player.Pause.started += Pause;
-            _playerProjectiles = new PlayerProjectile[100];
-            for (int i = 0; i < 100; i++)
+            _playerProjectiles = new PlayerProjectile[35];
+            for (int i = 0; i < 35; i++)
             {
                 _playerProjectiles[i] = Instantiate(_bullet).GetComponent<PlayerProjectile>();
             }
@@ -101,6 +101,14 @@ namespace Catparency
             if (!_canBeControlled) return;
             _shootCooldown -= Time.fixedDeltaTime;
             Vector2 moveInput = _inputs.Player.Move.ReadValue<Vector2>();
+
+            _hitboxVisual.enabled = _inputs.Player.Sprint.inProgress;
+
+            if (_inputs.Player.Sprint.inProgress)
+            {
+                moveInput *= 0.5f;
+            }
+
             //_rigidbody.rotation = Quaternion.Euler(moveInput.y * 30f, moveInput.x * 30f, 0);
 
             _rigidbody.Move(_rigidbody.position + 5f * Time.fixedDeltaTime * (Vector3)moveInput, Quaternion.Euler(moveInput.y * 30f, moveInput.x * -30f, 0));
@@ -160,6 +168,7 @@ namespace Catparency
         IEnumerator Die()
         {
             _canBeControlled = false;
+            _hitboxVisual.enabled = false;
             Debug.Log("autsis");
             foreach (var objects in _objectsToDisable)
             {
